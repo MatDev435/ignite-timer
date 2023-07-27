@@ -10,10 +10,22 @@ import {
   TaskInput,
 } from './styles'
 
-export function Home() {
-  const { register, handleSubmit, watch } = useForm()
+interface newCycleFormData {
+  task: string
+  minutesAmount: number
+}
 
-  function handleCreateNewCycle(data) {}
+export function Home() {
+  const { register, handleSubmit, watch } = useForm<newCycleFormData>({
+    defaultValues: {
+      task: '',
+      MinutesAmountInput: 0,
+    },
+  })
+
+  function handleCreateNewCycle(data: newCycleFormData) {
+    console.log(data.minutesAmount)
+  }
 
   const task = watch('task')
   const isSubmitDisabled = !task
